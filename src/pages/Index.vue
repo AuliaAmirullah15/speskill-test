@@ -1,7 +1,18 @@
 <template>
   <q-page>
     <div class="row header">
-      <div class="bg-gradient"></div>
+      <div class="bg-gradient">
+        <div class="console-wrapper-unflip">
+          <div class="absolute-bottom text-center">
+            <p class="console-header-unflip text-h6">{{ title }}</p>
+            <p>{{ timestamp }}</p>
+          </div>
+        </div>
+        <div class="console-wrapper">
+          <p class="absolute-bottom rotate-text">{{ timestamp }}</p>
+          <p class="absolute-bottom console-header text-h6">{{ title }}</p>
+        </div>
+      </div>
     </div>
     <div class="bg-content content">
       <div class="row justify-center">
@@ -93,6 +104,8 @@ export default {
       columns,
       rows: optionRows,
       total: 0,
+      title: "<SPE / FRONTEND>",
+      timestamp: "",
     };
   },
   methods: {
@@ -172,16 +185,47 @@ export default {
       });
       this.total = temp;
     },
+    getNow() {
+      const monthNames = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
+      ];
+
+      const today = new Date();
+      const date =
+        monthNames[today.getMonth()] +
+        " " +
+        today.getDate() +
+        " , " +
+        today.getFullYear();
+      const time =
+        today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+      const dateTime = date + " " + time;
+      this.timestamp = dateTime;
+    },
   },
   mounted() {
     this.fetchData();
+  },
+  created() {
+    setInterval(this.getNow, 1000);
   },
 };
 </script>
 
 <style scoped lang="scss">
 .header {
-  height: 50vh;
+  height: 80vh;
 }
 
 .bg-gradient {
@@ -192,6 +236,54 @@ export default {
 
 .content {
   padding: 24px;
+}
+
+.console-wrapper {
+  top: -350px;
+  right: -100px;
+  width: 90%;
+  height: 100%;
+  position: relative;
+  background: black;
+  color: #00ff00;
+  border: 15px solid #eeeeee;
+  border-radius: 25px;
+  transform: rotate(-20deg);
+}
+
+@media (max-width: 960px) {
+  .console-wrapper {
+    display: none;
+  }
+}
+
+.console-header {
+  margin-left: 60px;
+}
+
+.rotate-text {
+  margin-left: -85px;
+  margin-top: -50px;
+  margin-bottom: 100px;
+  font-size: 10px;
+  width: 200px;
+  transform: rotate(90deg);
+}
+
+.console-wrapper-unflip {
+  height: 40%;
+  width: 100%;
+  background: black;
+  color: #00ff00;
+  position: relative;
+  display: none;
+  border-bottom: 15px solid #eeeeee;
+}
+
+@media (max-width: 959px) {
+  .console-wrapper-unflip {
+    display: block;
+  }
 }
 </style>
 
