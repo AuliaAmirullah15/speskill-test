@@ -245,8 +245,8 @@ export default {
   height: 100%;
   position: relative;
   background: black;
-  color: #00ff00;
-  border: 15px solid #eeeeee;
+  color: $positive;
+  border: 15px solid $flavor;
   border-radius: 25px;
   transform: rotate(-20deg);
 }
@@ -274,10 +274,10 @@ export default {
   height: 40%;
   width: 100%;
   background: black;
-  color: #00ff00;
+  color: $positive;
   position: relative;
   display: none;
-  border-bottom: 15px solid #eeeeee;
+  border-bottom: 15px solid $flavor;
 }
 
 @media (max-width: 959px) {
