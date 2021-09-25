@@ -6,6 +6,10 @@ Sistem Pembayaran Elektronik
 
 ## Install the dependencies
 
+Built with quasar framework version 2.1.0 (which is built on vuejs 3)
+
+## Install the dependencies
+
 ```bash
 npm install
 ```

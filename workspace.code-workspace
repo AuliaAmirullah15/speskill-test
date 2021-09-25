@@ -1,0 +1,26 @@
+{
+    "folders": [
+		{
+			"path": "../../vi8e/testing-q2/quasar2-activate"
+		},
+		{
+			"path": "../parallax"
+		},
+		{
+			"path": "../spe"
+		},
+		{
+			"path": "../my-projects/market-place"
+		},
+		{
+			"path": "../sistem_pembayaran_elektronik"
+		},
+		{
+			"path": "../my-website"
+		},
+		{
+			"path": "."
+		}
+	],
+    "settings": {}
+}

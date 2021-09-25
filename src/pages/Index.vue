@@ -15,7 +15,7 @@
           class="full-width my-sticky-header-table"
         >
           <template v-slot:body-cell-product="props">
-            <q-td :props="props">
+            <q-td :props="props" class="flex-inline" style="width: 75%">
               <div class="row">
                 <div class="col">
                   <q-img
@@ -26,11 +26,24 @@
                 </div>
                 <div class="col">
                   <p class="text-secondary">{{ props.row.code }}</p>
-                  <p>{{ props.row.name }}</p>
+                  <p class="multiline">{{ props.row.name }}</p>
                   <p>{{ convertToRupiah(props.row.price) }}</p>
                   <p class="text-negative">{{ props.row.stock }} in stock</p>
                 </div>
               </div>
+            </q-td>
+          </template>
+          <template v-slot:body-cell-quantity="props">
+            <q-td :props="props">
+              <q-input
+                square
+                outlined
+                :model-value="props.value"
+                type="number"
+                @update:modelValue="
+                  (event) => changeTotal(event, props.row.code)
+                "
+              />
             </q-td>
           </template>
           <template v-slot:body-cell-subtotal="props">
@@ -129,8 +142,37 @@ export default {
           .join("")
       );
     },
-  },
+    changeTotal(val, code) {
+      const index = this.rows.findIndex((e) => e.code === code);
 
+      if (val > this.rows[index].stock && val > this.rows[index].quantity) {
+        this.$q.notify({
+          color: "negative",
+          message: "Attention! Quantity exceeds the stock!",
+          badgeStyle: "display: none",
+          position: "top",
+          actions: [
+            {
+              label: "Dismiss",
+              color: "white",
+              handler: () => {
+                /* ... */
+              },
+            },
+          ],
+        });
+      }
+
+      this.rows[index].quantity = val;
+      this.rows[index].subtotal =
+        this.rows[index].quantity * this.rows[index].price;
+      let temp = 0;
+      Object.values(this.rows).forEach((o) => {
+        temp += o.subtotal;
+      });
+      this.total = temp;
+    },
+  },
   mounted() {
     this.fetchData();
   },
@@ -145,21 +187,6 @@ export default {
 .bg-gradient {
   height: 100%;
   width: 100%;
-  // background-image: linear-gradient(
-  //   to right top,
-  //   #002f74,
-  //   #234489,
-  //   #3b5a9e,
-  //   #5270b4,
-  //   #6888ca,
-  //   #679adb,
-  //   #67adea,
-  //   #69bff8,
-  //   #52cffe,
-  //   #41dfff,
-  //   #46eefa,
-  //   #5ffbf1
-  // ) !important;
   background-image: linear-gradient(to right, #5ffbf1, #6888ca, #fc00ff);
 }
 
