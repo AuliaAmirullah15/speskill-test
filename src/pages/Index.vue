@@ -21,6 +21,7 @@ import mixinsTimeStamp from "src/mixins/mixins-timestamp";
 import TheHeader from "src/components/TheHeader.vue";
 import TheBody from "src/components/TheBody.vue";
 import { mapGetters, mapState, mapActions } from "vuex";
+import { ref } from "vue";
 
 export default {
   name: "PageIndex",
@@ -28,7 +29,7 @@ export default {
   data() {
     return {
       title: "<SPE / FRONTEND>",
-      timestamp: "",
+      timestamp: ref(""),
     };
   },
   methods: {

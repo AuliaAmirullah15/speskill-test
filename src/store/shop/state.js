@@ -1,3 +1,5 @@
+import { ref } from "vue";
+
 export default function() {
     return {
         columns: [{
@@ -23,7 +25,7 @@ export default function() {
                 sortable: true,
             },
         ],
-        rows: [],
-        totalAll: 0,
+        rows: ref([]),
+        totalAll: ref(0),
     };
 }
