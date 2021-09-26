@@ -9,5 +9,9 @@
 <script>
 export default {
   name: "MainLayout",
+  beforeRouteEnter(_, _2, next) {
+    console.log("Hi");
+    next();
+  },
 };
 </script>
