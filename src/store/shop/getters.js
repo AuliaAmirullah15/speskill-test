@@ -5,3 +5,7 @@ export function columns(state) {
 export function rows(state) {
     return state.rows;
 }
+
+export function optionsRows(state) {
+    return state.optionsRows;
+}

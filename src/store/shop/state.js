@@ -25,6 +25,7 @@ export default function() {
                 sortable: true,
             },
         ],
+        optionsRows: ref([]),
         rows: ref([]),
         totalAll: ref(0),
     };

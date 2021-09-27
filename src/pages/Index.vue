@@ -3,16 +3,34 @@
     <the-header :title="title" :timestamp="timestamp" />
     <the-body
       :columns="columns"
-      :rows="rows"
+      :rows="data"
       :total="total"
       @update-value="changeTotal"
       background="bg-spe"
       color="text-black"
+      class="q-gutter-md"
     >
       <template #title>
-        <p class="text-h4">SPE Frontend Shop</p>
+        <p class="text-title">SPE Frontend Shop</p>
+      </template>
+      <template #body>
+        <div class="flex flex-inline q-gutter-sm">
+          <searching
+            v-model:searchField="searchField"
+            @clear="searchField = ''"
+          />
+          <q-btn
+            round
+            color="primary"
+            icon="shopping_cart"
+            @click="showAds = true"
+          />
+        </div>
       </template>
     </the-body>
+    <q-dialog v-model="showAds">
+      <advertisement v-model:stars="stars" />
+    </q-dialog>
   </q-page>
 </template>
 
@@ -20,6 +38,8 @@
 import mixinsTimeStamp from "src/mixins/mixins-timestamp";
 import TheHeader from "src/components/TheHeader.vue";
 import TheBody from "src/components/TheBody.vue";
+import Searching from "src/components/Searching.vue";
+import Advertisement from "src/components/Modal.vue";
 import { mapGetters, mapState, mapActions } from "vuex";
 import { ref } from "vue";
 
@@ -30,6 +50,9 @@ export default {
     return {
       title: "<SPE / FRONTEND>",
       timestamp: ref(""),
+      searchField: "",
+      showAds: ref(false),
+      stars: ref(4),
     };
   },
   methods: {
@@ -60,18 +83,35 @@ export default {
       };
       this.changeTotalItem(payload);
     },
-    ...mapActions("shop", ["fetchData", "changeTotalItem"]),
+    ...mapActions("shop", ["fetchData", "changeTotalItem", "updateDataTable"]),
   },
   computed: {
     total() {
       return this.totalAll;
     },
+    data: {
+      get() {
+        return this.rows;
+      },
+      set(newVal) {
+        return newVal;
+      },
+    },
     ...mapState("shop", ["totalAll"]),
-    ...mapGetters("shop", ["columns", "rows"]),
+    ...mapGetters("shop", ["columns", "rows", "optionsRows"]),
+  },
+  watch: {
+    searchField() {
+      const needle = this.searchField.toLowerCase();
+      this.updateDataTable(needle);
+      console.log(this.data);
+    },
   },
   components: {
     TheHeader,
     TheBody,
+    Searching,
+    Advertisement,
   },
   mounted() {
     this.fetchData();
@@ -85,6 +125,16 @@ export default {
 <style lang="scss">
 .content {
   padding: 24px;
+}
+
+.text-title {
+  font-size: 32px;
+}
+
+@media (max-width: 576px) {
+  .text-title {
+    font-size: 24px;
+  }
 }
 </style>
 

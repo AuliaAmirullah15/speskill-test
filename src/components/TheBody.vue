@@ -5,6 +5,9 @@
         <p>SPE Title</p>
       </slot>
     </div>
+    <slot name="body">
+      <div class="row"></div>
+    </slot>
     <div class="row">
       <q-table
         :rows="rows"

@@ -30,7 +30,12 @@
         </div>
       </div>
 
-      <q-rating v-model="stars" :max="5" size="32px" />
+      <q-rating
+        :model-value="stars"
+        @update:model-value="(event) => $emit('update:stars', event)"
+        :max="5"
+        size="32px"
+      />
     </q-card-section>
 
     <q-card-section class="q-pt-none">
@@ -49,7 +54,8 @@
 </template>
 
 <script>
-export default {};
+export default {
+  emits: ["update:stars"],
+  props: ["stars"],
+};
 </script>
-
-<style></style>

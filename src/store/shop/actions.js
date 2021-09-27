@@ -22,3 +22,7 @@ export async function fetchData({ commit }) {
 export function changeTotalItem({ commit }, payload) {
     commit("changeTotalItem", payload);
 }
+
+export function updateDataTable({ commit }, payload) {
+    commit("updateDataTable", payload);
+}

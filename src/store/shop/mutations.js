@@ -13,6 +13,7 @@ export function setData(state, payload) {
             subtotal: subtotal,
         };
         state.rows.push({...temp });
+        state.optionsRows.push({...temp });
     } catch (e) {
         console.log(e);
     }
@@ -29,5 +30,22 @@ export function changeTotalItem(state, payload) {
             temp += o.subtotal;
         });
         state.totalAll = temp;
+        resolve();
     });
+}
+
+export function updateDataTable(state, payload) {
+    try {
+        if (payload === "") {
+            state.rows = [...state.optionsRows];
+        } else {
+            state.rows = [
+                ...state.optionsRows.filter(function(v) {
+                    return v.code.toLowerCase().match(payload);
+                }),
+            ];
+        }
+    } catch (e) {
+        console.log(e);
+    }
 }
