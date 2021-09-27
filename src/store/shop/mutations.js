@@ -41,7 +41,10 @@ export function updateDataTable(state, payload) {
         } else {
             state.rows = [
                 ...state.optionsRows.filter(function(v) {
-                    return v.code.toLowerCase().match(payload);
+                    return (
+                        v.code.toLowerCase().match(payload) ||
+                        v.name.toLowerCase().match(payload)
+                    );
                 }),
             ];
         }

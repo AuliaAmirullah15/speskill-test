@@ -1,0 +1,16 @@
+{
+    "folders": [
+		{
+			"path": "../.."
+		},
+		{
+			"path": "../../../../vi8e/quasar2-activate"
+		},
+		{
+			"path": "../../../my-projects/market-place"
+		},
+		{
+			"path": "../../../../vi8e/testing-q2/quasar-inventory"
+		}
+	]
+}

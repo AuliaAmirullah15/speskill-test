@@ -3,6 +3,7 @@
     outlined
     dense
     :model-value="searchField"
+    label="Search (Code or Product Name)"
     @update:modelValue="(event) => $emit('update:searchField', event)"
     class="search-field col"
   >
