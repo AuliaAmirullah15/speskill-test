@@ -4,7 +4,7 @@
 
 Sistem Pembayaran Elektronik
 
-## Install the dependencies
+### Description
 
 Built with quasar framework version 2.1.0 (which is built on vuejs 3)
 
@@ -16,11 +16,15 @@ npm install
 
 ## Install Quasar CLI
 
-$ yarn global add @quasar/cli
+```bash
+yarn global add @quasar/cli
+```
 
-# or
+or
 
-$ npm install -g @quasar/cli
+```bash
+npm install -g @quasar/cli
+```
 
 ### Start the app in development mode (hot-code reloading, error reporting, etc.)
 
