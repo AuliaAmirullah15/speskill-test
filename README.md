@@ -14,6 +14,14 @@ Built with quasar framework version 2.1.0 (which is built on vuejs 3)
 npm install
 ```
 
+## Install Quasar CLI
+
+$ yarn global add @quasar/cli
+
+# or
+
+$ npm install -g @quasar/cli
+
 ### Start the app in development mode (hot-code reloading, error reporting, etc.)
 
 ```bash
